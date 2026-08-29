@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OceanEmbed Prediction Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Satellite Embedding Reconstruction</p>
+          <h1>OceanEmbed</h1>
+          <p class="lede">
+            Daily subsurface ocean temperature estimates from surface satellite observations across the North Indian Ocean.
+          </p>
+        </div>
+        <div class="status-strip" aria-label="Model summary">
+          <span><strong id="pointCount">0</strong> grid points</span>
+          <span><strong id="dateCount">0</strong> dates</span>
+          <span><strong id="depthCount">0</strong> depths</span>
+        </div>
+      </section>
+
+      <section class="workflow" aria-label="Prediction workflow">
+        <div class="panel calendar-panel">
+          <div class="panel-heading">
+            <span class="step">01</span>
+            <div>
+              <h2>Select Date</h2>
+              <p>Choose the satellite observation day to visualize.</p>
+            </div>
+          </div>
+          <input type="date" id="datePicker" aria-label="Prediction date">
+          <div class="date-list" id="dateChips" aria-label="Available dates"></div>
+          <label class="file-control">
+            <span>Load another prediction CSV</span>
+            <input type="file" id="csvInput" accept=".csv,text/csv">
+          </label>
+        </div>
+
+        <div class="panel map-panel">
+          <div class="panel-heading compact">
+            <span class="step">02</span>
+            <div>
+              <h2>Map Integration</h2>
+              <p>Bounded Plotly map for 5-30N and 45-105E.</p>
+            </div>
+          </div>
+          <div id="map" role="application" aria-label="Prediction map"></div>
+        </div>
+
+        <div class="panel data-panel">
+          <div class="panel-heading">
+            <span class="step">03</span>
+            <div>
+              <h2>Predicted Data</h2>
+              <p id="selectionLabel">Select a point on the map.</p>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div>
+              <span class="metric-label">SST</span>
+              <strong id="sstMetric">--</strong>
+            </div>
+            <div>
+              <span class="metric-label">SSS</span>
+              <strong id="sssMetric">--</strong>
+            </div>
+            <div>
+              <span class="metric-label">SSH</span>
+              <strong id="sshMetric">--</strong>
+            </div>
+            <div>
+              <span class="metric-label">Wind</span>
+              <strong id="windMetric">--</strong>
+            </div>
+          </div>
+
+          <div class="profile-wrap">
+            <div class="profile-chart" id="profileChart" aria-label="Temperature depth profile"></div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Depth</th>
+                  <th>Predicted Temp</th>
+                </tr>
+              </thead>
+              <tbody id="profileRows">
+                <tr>
+                  <td colspan="2">No point selected</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
