@@ -134,6 +134,30 @@ After training, the saved `model.pt` can be used by `predict.py`. Check its comm
 python predict.py --help
 ```
 
+## 9. Open the frontend dashboard
+
+The `frontend/` folder contains a Plotly-based dashboard for the PoC. It starts with a date selector, shows prediction points only inside the North Indian Ocean region (`5N-30N`, `45E-105E`), and displays the predicted subsurface temperature profile for the selected point.
+
+From the repository root, serve the project with Python:
+
+```powershell
+python -m http.server 8000
+```
+
+If Python is not available but Node.js is installed, use the included static server:
+
+```powershell
+node frontend/server.js
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/frontend/
+```
+
+The dashboard loads `predictions.csv` automatically when served from the repository root. If it is opened directly from the filesystem, use the CSV upload control in the first panel.
+
 ## Deactivate the environment
 
 When finished:
